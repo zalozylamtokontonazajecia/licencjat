@@ -1,0 +1,330 @@
+# Setup Python ----------------------------------------------- #
+import pygame, sys
+import random
+# Setup pygame/window ---------------------------------------- #
+mainClock = pygame.time.Clock()
+from pygame.locals import *
+pygame.init()
+pygame.display.set_caption('game base')
+screen = pygame.display.set_mode((800,600),0,32)
+
+#kot
+catImg = pygame.image.load('kot.png')
+catX = 250
+catY = 150
+
+#funkcja karm
+foodImg = pygame.image.load('food.png')
+foodX = 100
+foodY = 50
+#funkcja mycie
+cleanImg = pygame.image.load('clean.png')
+cleanX = 100
+cleanY = 150
+#funkcja zabawa
+playImg = pygame.image.load('play.png')
+playX = 100
+playY = 250
+#funkcja śpi
+sleepImg = pygame.image.load('sleep.png')
+sleepX = 100
+sleepY = 350
+
+#brudny_kot
+brudny_kot_img = pygame.image.load('brudny_kot.png')
+brudny_kot_X = 250
+brudny_kot_Y = 150
+
+#śpiący_kot
+spiacy_kot_img = pygame.image.load('spiacy_kot.png')
+spiacy_kot_X = 250
+spiacy_kot_Y = 150
+
+
+
+
+
+
+
+def cat():
+    #drawing a cat
+    screen.blit(catImg,(catX, catY))
+def food():
+    screen.blit(foodImg,(foodX,foodY))
+def clean():
+    screen.blit(cleanImg,(cleanX,cleanY))
+def play():
+    screen.blit(playImg,(playX,playY))
+def sleep():
+    screen.blit(sleepImg,(sleepX, sleepY))
+
+
+
+click = False
+
+def main_menu():
+    
+    while True:
+
+        screen.fill((250, 219, 216))
+
+        def kocie_czynnosci():
+            wybor_czynnosci = random.randint(1,2)
+            if wybor_czynnosci == 1:
+                screen.blit(brudny_kot_img,(brudny_kot_X, brudny_kot_Y))
+            elif wybor_czynnosci == 2:
+                screen.blit(spiacy_kot_img,(spiacy_kot_X, spiacy_kot_Y))
+            elif wybor_czynnosci == 3:
+                cat()
+
+
+
+        mx, my = pygame.mouse.get_pos()
+#k(left, top, wight, hight)
+        button_1 = pygame.Rect(100, 50, 80, 80)
+        button_2 = pygame.Rect(100, 150, 80, 80)
+        button_3 = pygame.Rect(100, 250, 80, 80)
+        button_4 = pygame.Rect(100, 350, 80, 80)
+        if button_1.collidepoint((mx, my)):
+            if click:
+                food_option()
+        if button_2.collidepoint((mx, my)):
+            if click:
+                clean_option()
+        if button_3.collidepoint((mx, my)):
+            if click:
+                play_option()
+        if button_4.collidepoint((mx, my)):
+            if click:
+                sleep_option()
+        pygame.draw.rect(screen, (255, 0, 0), button_1)
+        pygame.draw.rect(screen, (255, 0, 0), button_2)
+        pygame.draw.rect(screen, (255, 0, 0), button_3)
+        pygame.draw.rect(screen, (255, 0, 0), button_4)
+        click = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+        kocie_czynnosci()
+        food()
+        sleep()
+        play()
+        clean()
+
+        pygame.display.update()
+        mainClock.tick(60)
+
+def food_option():
+    running = True
+    while running:
+        while True:
+            screen.fill((250, 219, 216))
+
+            click = False
+            mx, my = pygame.mouse.get_pos()
+    #k(left, top, wight, hight)
+            button_1 = pygame.Rect(100, 50, 80, 80)
+            button_2 = pygame.Rect(100, 150, 80, 80)
+            button_3 = pygame.Rect(100, 250, 80, 80)
+            button_4 = pygame.Rect(100, 350, 80, 80)
+            if button_1.collidepoint((mx, my)):
+                if click:
+                    food_option()
+            if button_2.collidepoint((mx, my)):
+                if click:
+                    clean_option()
+            if button_3.collidepoint((mx, my)):
+                if click:
+                    play_option()
+            if button_4.collidepoint((mx, my)):
+                if click:
+                    sleep_option()
+            pygame.draw.rect(screen, (255, 0, 0), button_1)
+            pygame.draw.rect(screen, (255, 0, 0), button_2)
+            pygame.draw.rect(screen, (255, 0, 0), button_3)
+            pygame.draw.rect(screen, (255, 0, 0), button_4)
+            click = False
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
+
+            cat()
+            food()
+            sleep()
+            play()
+            clean()
+
+            pygame.display.update()
+            mainClock.tick(60)
+
+
+
+def clean_option():
+    running = True
+    while running:
+        while True:
+            screen.fill((250, 219, 216))
+
+            click = False
+            mx, my = pygame.mouse.get_pos()
+    #k(left, top, wight, hight)
+            button_1 = pygame.Rect(100, 50, 80, 80)
+            button_2 = pygame.Rect(100, 150, 80, 80)
+            button_3 = pygame.Rect(100, 250, 80, 80)
+            button_4 = pygame.Rect(100, 350, 80, 80)
+            if button_1.collidepoint((mx, my)):
+                if click:
+                    food_option()
+            if button_2.collidepoint((mx, my)):
+                if click:
+                    clean_option()
+            if button_3.collidepoint((mx, my)):
+                if click:
+                    play_option()
+            if button_4.collidepoint((mx, my)):
+                if click:
+                    sleep_option()
+            pygame.draw.rect(screen, (255, 0, 0), button_1)
+            pygame.draw.rect(screen, (255, 0, 0), button_2)
+            pygame.draw.rect(screen, (255, 0, 0), button_3)
+            pygame.draw.rect(screen, (255, 0, 0), button_4)
+            click = False
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
+
+            cat()
+            food()
+            sleep()
+            play()
+            clean()
+
+            pygame.display.update()
+            mainClock.tick(60)
+def play_option():
+    running = True
+    while running:
+        while True:
+            screen.fill((250, 219, 216))
+
+            click = False
+            mx, my = pygame.mouse.get_pos()
+    #k(left, top, wight, hight)
+            button_1 = pygame.Rect(100, 50, 80, 80)
+            button_2 = pygame.Rect(100, 150, 80, 80)
+            button_3 = pygame.Rect(100, 250, 80, 80)
+            button_4 = pygame.Rect(100, 350, 80, 80)
+            if button_1.collidepoint((mx, my)):
+                if click:
+                    food_option()
+            if button_2.collidepoint((mx, my)):
+                if click:
+                    clean_option()
+            if button_3.collidepoint((mx, my)):
+                if click:
+                    play_option()
+            if button_4.collidepoint((mx, my)):
+                if click:
+                    sleep_option()
+            pygame.draw.rect(screen, (255, 0, 0), button_1)
+            pygame.draw.rect(screen, (255, 0, 0), button_2)
+            pygame.draw.rect(screen, (255, 0, 0), button_3)
+            pygame.draw.rect(screen, (255, 0, 0), button_4)
+            click = False
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
+
+            cat()
+            food()
+            sleep()
+            play()
+            clean()
+
+            pygame.display.update()
+            mainClock.tick(60)
+def sleep_option():
+    running = True
+    while running:
+        while True:
+            screen.fill((250, 219, 216))
+
+            click = False
+            mx, my = pygame.mouse.get_pos()
+    #k(left, top, wight, hight)
+            button_1 = pygame.Rect(100, 50, 80, 80)
+            button_2 = pygame.Rect(100, 150, 80, 80)
+            button_3 = pygame.Rect(100, 250, 80, 80)
+            button_4 = pygame.Rect(100, 350, 80, 80)
+            if button_1.collidepoint((mx, my)):
+                if click:
+                    food_option()
+            if button_2.collidepoint((mx, my)):
+                if click:
+                    clean_option()
+            if button_3.collidepoint((mx, my)):
+                if click:
+                    play_option()
+            if button_4.collidepoint((mx, my)):
+                if click:
+                    sleep_option()
+            pygame.draw.rect(screen, (255, 0, 0), button_1)
+            pygame.draw.rect(screen, (255, 0, 0), button_2)
+            pygame.draw.rect(screen, (255, 0, 0), button_3)
+            pygame.draw.rect(screen, (255, 0, 0), button_4)
+            click = False
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
+
+            cat()
+            food()
+            sleep()
+            play()
+            clean()
+
+            pygame.display.update()
+            mainClock.tick(60)
+
+
+main_menu()
