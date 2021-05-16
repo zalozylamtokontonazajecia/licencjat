@@ -59,7 +59,7 @@ def sleep():
     screen.blit(sleepImg,(sleepX, sleepY))
 
 
-#wybor_czynnosci = random.randint(1,3)
+wybor_czynnosci = random.randint(1,3)
 
 def kocie_czynnosci(wybor_czynnosci):
 
@@ -201,4 +201,5 @@ def clean_option():
 
             pygame.display.update()
             mainClock.tick(60)
+main_menu()
 
